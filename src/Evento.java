@@ -23,4 +23,33 @@ public class Evento {
         }
 
     }
+
+    //Getter and setter
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        if (data.isBefore(LocalDate.now())) {
+            System.out.println("La data dell'evento non può essere nel passato");
+        } else {
+            this.data = data;
+        }
+    }
+
+    public int getPostiTotali() {
+        return postiTotali;
+    }
+
+    public int getPostiPrenotati() {
+        return postiPrenotati;
+    }
 }
