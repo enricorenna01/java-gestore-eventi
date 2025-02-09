@@ -18,5 +18,28 @@ public class Main {
 
         //Creo un nuovo evento
         Evento evento = new Evento(titolo, data, postiTotali);
+
+        //Prenotazione
+        System.out.println("Quante prenotazioni vuoi fare?");
+        int prenotazioni = scanner.nextInt();
+        for (int i = 0; i < prenotazioni; i++) {
+            evento.prenota();
+        }
+
+        System.out.println("Posti prontati: " + evento.getPostiPrenotati());
+        System.out.println("Posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
+
+        //Disdetta
+        System.out.println("Quante disdette vuoi fare?");
+        int disdette = scanner.nextInt();
+        for (int i = 0; i < disdette; i++) {
+            evento.disdici();
+        }
+
+        System.out.println("Posti prontati: " + evento.getPostiPrenotati());
+        System.out.println("Posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
+
+        //Chiudo scanner
+        scanner.close();
     }
 }
