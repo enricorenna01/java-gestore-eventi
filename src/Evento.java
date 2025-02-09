@@ -13,7 +13,7 @@ public class Evento {
             System.out.println("La data dell'evento è già passata...");
         
         } else if (postiTotali <= 0) {
-            System.out.println("Il numero dei posti tottale deve essere positivo!");
+            System.out.println("Il numero dei posti totale deve essere positivo!");
         
         } else {
             this.titolo = titolo;
@@ -38,11 +38,7 @@ public class Evento {
     }
 
     public void setData(LocalDate data) {
-        if (data.isBefore(LocalDate.now())) {
-            System.out.println("La data dell'evento non può essere nel passato");
-        } else {
             this.data = data;
-        }
     }
 
     public int getPostiTotali() {

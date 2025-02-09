@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Main {
@@ -9,9 +10,24 @@ public class Main {
         System.out.println("Inserisci il titolo dell'evento...");
         String titolo = scanner.nextLine();
 
-        System.out.println("Inserisci la data dell'evento (yyyy-MM-dd)...");
-        String dataString = scanner.nextLine();
-        LocalDate data = LocalDate.parse(dataString);
+        // Chiedi la data e verifica che sia valida
+        LocalDate data = null;
+        
+        while (data == null) {  // Continua a chiedere la data finché non è valida
+            System.out.print("Inserisci la data dell'evento (yyyy-MM-dd): ");
+            String dataStr = scanner.nextLine();
+
+            try {
+                data = LocalDate.parse(dataStr);
+
+                if (data.isBefore(LocalDate.now())) {
+                    System.out.println("Errore: la data dell'evento è già passata. Riprova.");
+                    data = null; // Imposta la data a null per ripetere il ciclo
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println("Errore: formato della data non valido. Riprova.");
+            }
+        }
 
         System.out.println("Inserisci il numero dei posti totali...");
         int postiTotali = scanner.nextInt();
