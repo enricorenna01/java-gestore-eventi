@@ -50,11 +50,11 @@ public class Evento {
     }
 
     //Metodo per prenotare un posto
-    public void prenota() {
+    public void prenota(int posti) {
         if (data.isBefore(LocalDate.now())) {
             System.out.println("L'evento è gia passato!");
-        } else if (postiPrenotati < postiTotali) {
-            postiPrenotati++;
+        } else if (postiPrenotati + posti < postiTotali) {
+            postiPrenotati += posti;
             System.out.println("Hai prenotato con successo!");
         } else {
             System.out.println("Non ci sono posti disponibli!");
@@ -62,11 +62,11 @@ public class Evento {
     }
 
     //Metodo per disdire un posto
-    public void disdici() {
+    public void disdici(int posti) {
         if (data.isBefore(LocalDate.now())) {
             System.out.println("L'evento è gia passato!");
-        } else if (postiPrenotati > 0) {
-            postiPrenotati--;
+        } else if (postiPrenotati + posti > 0) {
+            postiPrenotati -= posti;
             System.out.println("Hai disdetto con successo!");
         } else {
             System.out.println("Non ci sono posti da disdire!");

@@ -35,25 +35,37 @@ public class Main {
         //Creo un nuovo evento
         Evento evento = new Evento(titolo, data, postiTotali);
 
-        //Prenotazione
-        System.out.println("Quante prenotazioni vuoi fare?");
-        int prenotazioni = scanner.nextInt();
-        for (int i = 0; i < prenotazioni; i++) {
-            evento.prenota();
+        // Mostra l'evento creato
+        System.out.println("Evento creato: " + evento);
+
+        // Gestione delle prenotazioni e disdette
+        while (true) {
+            System.out.println("\nVuoi fare una prenotazione o una disdetta? (P per prenotare, D per disdire, Q per uscire)");
+            String scelta = scanner.nextLine().toUpperCase();
+
+            if (scelta.equals("P")) {
+                System.out.print("Quanti posti vuoi prenotare? ");
+                int posti = Integer.parseInt(scanner.nextLine());
+                evento.prenota(posti);
+                
+                System.out.println("Posti prenotati: " + evento.getPostiPrenotati());
+                System.out.println("Posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
+        
+            } else if (scelta.equals("D")) {
+                System.out.print("Quanti posti vuoi disdire? ");
+                int posti = Integer.parseInt(scanner.nextLine());
+                evento.disdici(posti);
+
+                System.out.println("Posti prenotati: " + evento.getPostiPrenotati());
+                System.out.println("Posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
+                
+            } else if (scelta.equals("Q")) {
+                System.out.println("Grazie per aver usato il sistema. Arrivederci!");
+                break; // Esce dal ciclo e termina il programma
+            } else {
+                System.out.println("Opzione non valida. Scegli P per prenotare, D per disdire o Q per uscire.");
+            }
         }
-
-        System.out.println("Posti prontati: " + evento.getPostiPrenotati());
-        System.out.println("Posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
-
-        //Disdetta
-        System.out.println("Quante disdette vuoi fare?");
-        int disdette = scanner.nextInt();
-        for (int i = 0; i < disdette; i++) {
-            evento.disdici();
-        }
-
-        System.out.println("Posti prontati: " + evento.getPostiPrenotati());
-        System.out.println("Posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
 
         //Chiudo scanner
         scanner.close();
