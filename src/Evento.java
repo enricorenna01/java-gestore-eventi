@@ -52,4 +52,29 @@ public class Evento {
     public int getPostiPrenotati() {
         return postiPrenotati;
     }
+
+    //Metodo per prenotare un posto
+    public void prenota() {
+        if (data.isBefore(LocalDate.now())) {
+            System.out.println("L'evento è gia passato!");
+        } else if (postiPrenotati < postiTotali) {
+            postiPrenotati++;
+            System.out.println("Hai prenotato con successo!");
+        } else {
+            System.out.println("Non ci sono posti disponibli!");
+        }
+    }
+
+    //Metodo per disdire un posto
+    public void disdici() {
+        if (data.isBefore(LocalDate.now())) {
+            System.out.println("L'evento è gia passato!");
+        } else if (postiPrenotati > 0) {
+            postiPrenotati--;
+            System.out.println("Hai disdetto con successo!");
+        } else {
+            System.out.println("Non ci sono posti da disdire!");
+        }
+    }
+
 }
