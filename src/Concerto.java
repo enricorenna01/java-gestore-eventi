@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -29,5 +30,21 @@ public class Concerto extends Evento{
 
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
+    }
+
+    //Metodo per formattare data
+    public String getDataFormattata() {
+        return getData().toString();
+    }
+
+    //Metodo per formattare ora
+    public String getOraFormattata() {
+    return getOra().toString();
+    }
+
+    //Metodo per formattare prezzo
+    public String getPrezzoFormattato() {
+        DecimalFormat decimalFormat = new DecimalFormat("##.##");
+        return decimalFormat.format(prezzo) + "€";
     }
 }
