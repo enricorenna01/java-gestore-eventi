@@ -47,4 +47,9 @@ public class Concerto extends Evento{
         DecimalFormat decimalFormat = new DecimalFormat("##.##");
         return decimalFormat.format(prezzo) + "€";
     }
+
+    @Override
+    public String toString() {
+        return getDataFormattata() + " " + getOraFormattata() + " - " + getTitolo() + " - " + getPrezzoFormattato();
+    }
 }
