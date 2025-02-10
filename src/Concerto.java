@@ -45,11 +45,17 @@ public class Concerto extends Evento{
     //Metodo per formattare prezzo
     public String getPrezzoFormattato() {
         DecimalFormat decimalFormat = new DecimalFormat("##.##");
-        return decimalFormat.format(prezzo) + "€";
+        return decimalFormat.format(prezzo) + " euro";
     }
 
     @Override
     public String toString() {
         return getDataFormattata() + " " + getOraFormattata() + " - " + getTitolo() + " - " + getPrezzoFormattato();
+    }
+
+    //Main
+    public static void main(String[] args) {
+        Concerto concerto = new Concerto("Ed Sheeran", LocalDate.of(2025, 02, 25), 500, LocalTime.of(20, 30), 100.99);
+        System.out.println(concerto);
     }
 }

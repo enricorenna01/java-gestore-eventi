@@ -19,10 +19,10 @@ public class ProgrammaEventi {
     }
 
     //Metodo che restituisce una lista con tutti gli eventi presenti in una certa data
-    public List<Evento> eventiInData(LocalDate data) {
-        List<Evento> eventiInData = new ArrayList<>();
-        for(Evento e : eventi) {
-            if (e.getData().equals(data)) {
+    public List<Evento> eventiInData(String data) {
+            List<Evento> eventiInData = new ArrayList<>();
+            for(Evento e : eventi) {
+                if (e.getData().toString().equals(data)) {
                 eventiInData.add(e);
             }
         }
@@ -39,8 +39,8 @@ public class ProgrammaEventi {
         eventi.clear();
     }
 
-    @Override
-    public String toString() {
+    //Metodo che restituisce la lista di eventi ordinata
+    public String getDettaglioEventi() {
         StringBuilder sb = new StringBuilder();
         sb.append(titolo).append("\n");
         eventi.sort((e1, e2) -> e1.getData().compareTo(e2.getData()));
@@ -49,5 +49,35 @@ public class ProgrammaEventi {
         }
         
         return sb.toString();
+    }
+
+    //Main
+    public static void main(String[] args) {
+        ProgrammaEventi programma = new ProgrammaEventi("Programma Eventi 2025");
+
+        Evento evento1 = new Evento("Concerto BTR", LocalDate.of(2025, 06, 25), 500);
+        Evento evento2 = new Evento("La Commedia", LocalDate.of(2025, 04, 15), 300);
+        Evento evento3 = new Evento("Conferenza Apple", LocalDate.of(2025, 07, 14), 1000);
+
+        //Aggiungi evento al programma
+        programma.aggiungiEvento(evento1);
+        programma.aggiungiEvento(evento2);
+        programma.aggiungiEvento(evento3);
+
+        //Lista di eventi di una certa data
+        List<Evento> eventiInData = programma.eventiInData("2025-06-25");
+        for (Evento e : eventiInData) {
+            System.out.println("Ecco i seguenti eventi di una data precisa: " + e);
+        }
+
+        //Stampa numero di eventi
+        System.out.println("Il numero di eventi è: " + programma.getNumeroEventi());
+
+        //Lista di eventi ordinata
+        System.out.println(programma.getDettaglioEventi());
+
+        //Svuota la lista
+        programma.svuotaLista();
+        System.out.println("Eventi dopo lo svuotamento: " + programma.getNumeroEventi());
     }
 }
